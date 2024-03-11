@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: const Text(
-                  'see more',
+                  'see more ➤',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
@@ -119,7 +119,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: const Text(
-                  'see more',
+                  'see more ➤',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
@@ -158,7 +158,7 @@ class HomePage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: const Text(
-                  'see more',
+                  'see more ➤',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
