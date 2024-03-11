@@ -1,3 +1,5 @@
+import 'package:exploresl_login/pages/choose_user.dart';
+import 'package:exploresl_login/pages/guides.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
+    return const MaterialApp(home: guides());
   }
 }
 
