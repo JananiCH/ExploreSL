@@ -12,7 +12,8 @@ class guides extends StatelessWidget {
           Text('Tour Guides',
           style: TextStyle(
             fontSize: 30,
-            
+            fontWeight: FontWeight.bold
+
           ),)
         ],
       ),
