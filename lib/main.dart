@@ -1,4 +1,6 @@
+import 'package:exploresl_login/pages/HomePage.dart';
 import 'package:exploresl_login/pages/choose_user.dart';
+import 'package:exploresl_login/pages/guideSignUp.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +14,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home: HomePage());
+    return MaterialApp(home: Home());
   }
 }
-
-
