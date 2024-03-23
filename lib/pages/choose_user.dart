@@ -1,3 +1,5 @@
+import 'package:exploresl_login/pages/HomePage.dart';
+import 'package:exploresl_login/pages/guideSignUp.dart';
 import 'package:flutter/material.dart';
 
 class chooseUser extends StatelessWidget {
@@ -38,7 +40,14 @@ class chooseUser extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateAccountPage(),
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(300, 70),
               backgroundColor: Colors.blue,
@@ -70,7 +79,14 @@ class chooseUser extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateAccountPage(),
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(300, 70),
               backgroundColor: Colors.blue,

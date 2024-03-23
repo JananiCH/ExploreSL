@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class Guides extends StatelessWidget {
   final List<String> imageUrls = [
     'lib/images/all/1.jpeg',
     'lib/images/all/2.jpeg',
@@ -75,7 +75,9 @@ class HomePage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: const Text(
                     'see more ➤',
                     style: TextStyle(fontSize: 16),

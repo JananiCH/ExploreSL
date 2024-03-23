@@ -1,4 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:exploresl_login/pages/choose_user.dart';
+import 'package:exploresl_login/pages/destinations.dart';
+import 'package:exploresl_login/pages/guides.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -149,7 +152,7 @@ class _HomeState extends State<Home> {
                           const Duration(milliseconds: 800),
                       autoPlayInterval: const Duration(seconds: 2),
                       enlargeCenterPage: true,
-                      aspectRatio: 2.0,
+                      aspectRatio: 7.0,
                       onPageChanged: (index, reason) {
                         setState(() {
                           myCurrentIndex = index;
@@ -170,37 +173,67 @@ class _HomeState extends State<Home> {
                     spacing: 5,
                     activeDotColor: Colors.blue),
               ),
-              const SizedBox(height: 20),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Top Destinations',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+              const SizedBox(height: 5),
+              const Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Top Destinations',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Guides(),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: imageUrls5.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 38,
+                          backgroundImage: AssetImage(imageUrls5[index]),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-              Container(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: imageUrls5.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        radius: 38,
-                        backgroundImage: AssetImage(imageUrls5[index]),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => destinations(),
                       ),
                     );
                   },
+                  child: const Text(
+                    'see more ➤',
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ),
-              const SizedBox(height: 12),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
@@ -211,20 +244,47 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              Container(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: imageUrls.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        radius: 38,
-                        backgroundImage: AssetImage(imageUrls[index]),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => chooseUser(),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: imageUrls.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 38,
+                          backgroundImage: AssetImage(imageUrls[index]),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Guides(),
                       ),
                     );
                   },
+                  child: const Text(
+                    'see more ➤',
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ),
             ],
