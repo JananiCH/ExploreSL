@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
                         Text(
                           'welcome to exploreSL,',
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                           'Discover Sri Lanka with ease',
                           style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 18,
+                            fontSize: 15,
                           ),
                         ),
                       ],
@@ -83,9 +83,7 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-
           child: Column(
-            
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,21 +97,24 @@ class _HomeState extends State<Home> {
                   ),
                   Expanded(
                     flex: 1,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search for places or guides",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            width: 1.5,
-                            color: Colors.grey.shade300,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search for places or guides",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              width: 1.5,
+                              color: Colors.grey.shade300,
+                            ),
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            width: 1.5,
-                            color: Colors.grey.shade500,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              width: 1.5,
+                              color: Colors.grey.shade500,
+                            ),
                           ),
                         ),
                       ),
@@ -182,7 +183,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 12),
               Container(
                 height: 100,
                 child: ListView.builder(
@@ -199,7 +200,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
