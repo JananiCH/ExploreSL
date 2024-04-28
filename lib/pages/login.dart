@@ -1,10 +1,47 @@
-import 'package:exploresl_login/pages/HomePage.dart';
-import 'package:exploresl_login/pages/choose_user.dart';
-import 'package:exploresl_login/pages/guideSignUp.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'HomePage.dart';
+import 'auth_page.dart';
+import 'choose_user.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  final FirebaseAuthService auth = FirebaseAuthService();
+
+//text controllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+
+@override
+  void dispose(){
+  emailController.dispose();
+  passwordController.dispose();
+  super.dispose();
+}
+
+void signIn() async {
+  String email = emailController.text.trim();
+  String password = passwordController.text.trim();
+
+  emailController.clear();
+  passwordController.clear();
+
+  User? user = await auth.signInWithEmailAndPassword(email, password);
+  if (user != null) {
+    print("user successfull");
+    Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),);
+  } else {
+    print("error");
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +63,12 @@ class HomeScreen extends StatelessWidget {
                   height: 80,
                 ),
 
-                //textfield
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                //email textfield
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: emailController,
+                    decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         borderSide: BorderSide(color: Colors.grey),
@@ -42,10 +80,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
 
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                //password textfield
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         borderSide: BorderSide(color: Colors.grey),
@@ -53,6 +94,7 @@ class HomeScreen extends StatelessWidget {
                       fillColor: Colors.white70,
                       filled: true,
                       labelText: "Enter Password",
+                      
                     ),
                   ),
                 ),
@@ -74,24 +116,21 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
 
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.indigo,
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size(200, 50)),
-                  child: const Text(
-                    'Sign in',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                GestureDetector(
+                  onTap: signIn,
+                  child: Container(
+                    width: double.infinity,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("login",style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),),
                     ),
                   ),
                 ),
@@ -179,13 +218,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-              
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => chooseUser(),
-                    ),
-                  );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const chooseUser(),
+                          ),
+                        );
                       },
                       child: const Text('Sign Up'),
                     ),
