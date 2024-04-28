@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "154221242699",
+    "project_id": "exploresl-firebase",
+    "storage_bucket": "exploresl-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154221242699:android:9c463f575d2be1317160ce",
+        "android_client_info": {
+          "package_name": "com.example.exploresl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdUEGYioH8sBg2Wh_nFyJPSnwJ5-z7taE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154221242699:android:539d9dc33d8170f77160ce",
+        "android_client_info": {
+          "package_name": "com.example.exploresl_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdUEGYioH8sBg2Wh_nFyJPSnwJ5-z7taE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

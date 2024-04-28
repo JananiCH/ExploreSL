@@ -1,19 +1,24 @@
-import 'package:exploresl_login/pages/HomePage.dart';
-import 'package:exploresl_login/pages/choose_user.dart';
-import 'package:exploresl_login/pages/guideSignUp.dart';
-import 'package:exploresl_login/pages/guides.dart';
-import 'package:exploresl_login/pages/login.dart';
+import 'package:exploresl/pages/auth_page.dart';
+import 'package:exploresl/pages/login.dart';
+import 'package:exploresl/pages/touristSignIn.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
+    return  MaterialApp(home: HomeScreen());
   }
 }
