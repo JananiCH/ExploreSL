@@ -37,7 +37,7 @@ void signIn() async {
   User? user = await auth.signInWithEmailAndPassword(email, password);
   if (user != null) {
     print("user successfull");
-    Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),);
+    Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
   } else {
     print("error");
   }

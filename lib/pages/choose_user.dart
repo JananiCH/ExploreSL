@@ -2,6 +2,8 @@ import 'package:exploresl_login/pages/HomePage.dart';
 import 'package:exploresl_login/pages/guideSignUp.dart';
 import 'package:flutter/material.dart';
 
+import 'touristSignIn.dart';
+
 class chooseUser extends StatelessWidget {
   const chooseUser({super.key});
 
@@ -44,7 +46,7 @@ class chooseUser extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateAccountPage(),
+                  builder: (context) => SignUpPage(),
                 ),
               );
             },

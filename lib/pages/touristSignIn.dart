@@ -1,4 +1,3 @@
-
 import 'package:exploresl_login/pages/auth_page.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -230,6 +229,12 @@ class _SignUpPageState extends State<SignUpPage> {
   final lastnameController = TextEditingController();
   final countryController = TextEditingController();
 
+  String get email => emailController.text;
+  String get password => passwordController.text;
+  String get firstname => firstnameController.text;
+  String get lastname => lastnameController.text;
+  String get country => countryController.text;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -240,45 +245,37 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void signUp() async {
-    String email = emailController.text.trim();
-    String password = passwordController.text.trim();
+  Future<void> signUp(
+    String firstName,
+    String lastName,
+    String country,
+    String email,
+    String password,
+  ) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+      await user!.updateDisplayName(firstName);
+      await user.reload();
+      user = auth.currentUser;
 
-    // Clear the text fields after sign-up
-    emailController.clear();
-    passwordController.clear();
-
-    User? user = await auth.signUpWithEmailAndPassword(email, password);
-    if (user != null) {
-      print("user successfull");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    } else {
-      print("error");
+      FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
+        'uid': user.uid,
+        'firstName': firstName,
+        'lastName': lastName,
+        'country': country,
+        'email': email,
+        'password': password,
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else
+        print(e.code);
     }
-  }
-    void registerUser() async {
-
-    Future<void> registerUser(String email,String fisrtname,String lastname,String country) async {
-      try{
-        final user = FirebaseAuth.instance.currentUser;
-        if(user == null){
-          throw Exception('user not authenticated');
-        }
-        Map<String, dynamic> userData = {
-          'firstname' : fisrtname,
-          'lastname' : lastname,
-          'email' : email,
-          'country' : country,
-        };
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).set(UserData);
-        print('user data stored successfully');
-      }catch(e){
-        print('error in storing');
-        }
-      }
   }
 
   @override
@@ -383,7 +380,18 @@ class _SignUpPageState extends State<SignUpPage> {
 
             // Sign-up button
             GestureDetector(
-              onTap: signUp,
+              onTap: () async {
+                await signUp(
+                  firstname, 
+                  lastname, 
+                  country, 
+                  email, 
+                  password
+                  ).then((value) { Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));});
+                  ;
+              },
               child: Container(
                 width: double.infinity,
                 height: 45,
