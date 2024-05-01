@@ -26,6 +26,8 @@ class Guides extends StatelessWidget {
     'lib/images/galle/5.jpeg',
   ];
 
+  const Guides({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,11 +77,9 @@ class Guides extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: const Text(
-                    'see more ➤',
+                    'See more ➤',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -99,7 +99,7 @@ class Guides extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  'kandy',
+                  'Kandy',
                   style: TextStyle(fontSize: 15),
                 ),
               ),
@@ -124,7 +124,7 @@ class Guides extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {},
                   child: const Text(
-                    'see more ➤',
+                    'See more ➤',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -163,7 +163,7 @@ class Guides extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {},
                   child: const Text(
-                    'see more ➤',
+                    'See more ➤',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
