@@ -26,7 +26,7 @@ class Guides extends StatelessWidget {
     'lib/images/galle/5.jpeg',
   ];
 
-  const Guides({super.key});
+  Guides({super.key});
 
   @override
   Widget build(BuildContext context) {
