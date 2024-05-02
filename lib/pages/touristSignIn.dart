@@ -1,3 +1,5 @@
+
+
 import 'package:exploresl_login/pages/auth_page.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -228,6 +230,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
   final countryController = TextEditingController();
+  final currency = TextEditingController();
+  final language = TextEditingController();
+  final nationality = TextEditingController();
 
   String get email => emailController.text;
   String get password => passwordController.text;
@@ -250,7 +255,6 @@ class _SignUpPageState extends State<SignUpPage> {
     String lastName,
     String country,
     String email,
-    String password,
   ) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -268,7 +272,6 @@ class _SignUpPageState extends State<SignUpPage> {
         'lastName': lastName,
         'country': country,
         'email': email,
-        'password': password,
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -291,11 +294,13 @@ class _SignUpPageState extends State<SignUpPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // username text field
-            TextField(
+
+            TextFormField(
               controller: firstnameController,
               decoration: const InputDecoration(
-                labelText: 'firstname',
+                labelText: 'First Name',
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 12.0),
 
@@ -344,6 +349,8 @@ class _SignUpPageState extends State<SignUpPage> {
               }).toList(),
             ),
 
+            SizedBox(height: 16.0),
+
             /*DropdownButtonFormField<String>(
               decoration: const InputDecoration(
                 labelText: 'Currency',
@@ -382,15 +389,15 @@ class _SignUpPageState extends State<SignUpPage> {
             GestureDetector(
               onTap: () async {
                 await signUp(
-                  firstname, 
-                  lastname, 
-                  country, 
-                  email, 
-                  password
-                  ).then((value) { Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));});
-                  ;
+                  firstname,
+                  lastname,
+                  country,
+                  email,
+                ).then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                });
+                ;
               },
               child: Container(
                 width: double.infinity,

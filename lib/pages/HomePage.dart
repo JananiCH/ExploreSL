@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(
                 height: 200,
-                child: Container(
+                child: SizedBox(
                   height: 300,
                   child: CarouselSlider(
                     options: CarouselOptions(
@@ -201,7 +201,7 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -225,7 +225,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => destinations(),
+                        builder: (context) => const destinations(),
                       ),
                     );
                   },
@@ -250,11 +250,11 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => chooseUser(),
+                      builder: (context) => const chooseUser(),
                     ),
                   );
                 },
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
