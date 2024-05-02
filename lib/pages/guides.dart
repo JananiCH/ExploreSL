@@ -31,6 +31,7 @@ class Guides extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -43,6 +44,7 @@ class Guides extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -52,8 +54,11 @@ class Guides extends StatelessWidget {
                   children: [
                     Text(
                       'All around SL',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -68,6 +73,7 @@ class Guides extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 38,
+                        backgroundColor: Colors.grey[200],
                         backgroundImage: AssetImage(imageUrls[index]),
                       ),
                     );
@@ -80,7 +86,10 @@ class Guides extends StatelessWidget {
                   onPressed: () {},
                   child: const Text(
                     'See more ➤',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ),
@@ -90,8 +99,11 @@ class Guides extends StatelessWidget {
                   children: [
                     Text(
                       'Specific Regions',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -100,7 +112,10 @@ class Guides extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Kandy',
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               SizedBox(
@@ -113,6 +128,7 @@ class Guides extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 38,
+                        backgroundColor: Colors.grey[200],
                         backgroundImage: AssetImage(imageUrls2[index]),
                       ),
                     );
@@ -125,7 +141,10 @@ class Guides extends StatelessWidget {
                   onPressed: () {},
                   child: const Text(
                     'See more ➤',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ),
@@ -137,6 +156,7 @@ class Guides extends StatelessWidget {
                       'Galle',
                       style: TextStyle(
                         fontSize: 15,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -152,6 +172,7 @@ class Guides extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 38,
+                        backgroundColor: Colors.grey[200],
                         backgroundImage: AssetImage(imageUrls3[index]),
                       ),
                     );
@@ -164,7 +185,10 @@ class Guides extends StatelessWidget {
                   onPressed: () {},
                   child: const Text(
                     'See more ➤',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ),
