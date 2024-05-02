@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -62,7 +64,7 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'welcome to exploreSL,',
+                          'Welcome to ExploreSL,',
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
@@ -132,7 +134,7 @@ class _HomeState extends State<Home> {
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    'Top rated experiences',
+                    'Top Rated Experiences',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -230,7 +232,7 @@ class _HomeState extends State<Home> {
                     );
                   },
                   child: const Text(
-                    'see more ➤',
+                    'See more ➤',
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
@@ -283,7 +285,7 @@ class _HomeState extends State<Home> {
                     );
                   },
                   child: const Text(
-                    'see more ➤',
+                    'See more ➤',
                     style: TextStyle(fontSize: 15),
                   ),
                 ),

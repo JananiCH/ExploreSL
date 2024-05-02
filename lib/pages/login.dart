@@ -1,47 +1,47 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'HomePage.dart';
 import 'auth_page.dart';
 import 'choose_user.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final FirebaseAuthService auth = FirebaseAuthService();
 
 //text controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-
-@override
-  void dispose(){
-  emailController.dispose();
-  passwordController.dispose();
-  super.dispose();
-}
-
-void signIn() async {
-  String email = emailController.text.trim();
-  String password = passwordController.text.trim();
-
-  emailController.clear();
-  passwordController.clear();
-
-  User? user = await auth.signInWithEmailAndPassword(email, password);
-  if (user != null) {
-    print("user successfull");
-    Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
-  } else {
-    print("error");
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
-}
+
+  void signIn() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    emailController.clear();
+    passwordController.clear();
+
+    User? user = await auth.signInWithEmailAndPassword(email, password);
+    if (user != null) {
+      print("user successfull");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Home()));
+    } else {
+      print("error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,6 @@ void signIn() async {
                       fillColor: Colors.white70,
                       filled: true,
                       labelText: "Enter Password",
-                      
                     ),
                   ),
                 ),
@@ -126,11 +125,14 @@ void signIn() async {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Center(
-                      child: Text("login",style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),),
+                      child: Text(
+                        "login",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -196,7 +198,7 @@ void signIn() async {
                             borderRadius: BorderRadius.circular(10.0),
                           )),
                           onPressed: () {},
-                          child: const Text('google'),
+                          child: const Text('Google'),
                         ),
                       ),
                     ),
