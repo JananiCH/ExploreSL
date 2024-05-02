@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:exploresl_login/pages/guides.dart';
+import 'package:exploresl_login/pages/login.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _documentController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =TextEditingController();
   final TextEditingController _addImageController = TextEditingController();
 
   String get name => _nameController.text;
@@ -45,8 +47,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Future<void> signUpGuide(
     String name,
     String email,
-    String password,
-    String confirmPassword,
     String document,
     String phoneNumber,
     String image,
@@ -68,6 +68,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         'document': document,
         'phoneNumber': phoneNumber,
         'image': image,
+        'type': 'guide',
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -261,41 +262,40 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
               const SizedBox(height: 20.0),
               GestureDetector(
-              onTap: () async {
-                await signUpGuide(
-                  name,
-                  email,
-                  phoneNumber,
-                  document,
-                  image,
-                  password,
-                  confirmPassword,
-                  
-                ).then((value) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyWidget()));
-                });
-                ;
-              },
-              child: Container(
-                width: double.infinity,
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                  child: Text(
-                    "Create Account",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                onTap: () async {
+                  await signUpGuide(
+                    name,
+                    email,
+                    phoneNumber,
+                    document,
+                    image,
+                  ).then((value) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  });
+                  ;
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Create Account",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
             ],
           ),
         ),

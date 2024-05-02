@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../ThisIsForGuides.dart';
 import 'HomePage.dart';
 import 'auth_page.dart';
 import 'choose_user.dart';
@@ -36,8 +38,33 @@ class _HomeScreenState extends State<HomeScreen> {
     User? user = await auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       print("user successful");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Home()));
+
+      //get user data from firestore
+      var userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      if (userData.exists) {
+        //retrieve the user type
+        String userType = userData['type'];
+
+        //navigate based on type
+        if (userType == 'tourist') {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const Home()),
+              ));
+        } else if (userType == 'guide') {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const MyWidget()),
+              ));
+        }
+      } else {
+        print('error');
+      }
     } else {
       print("error");
     }

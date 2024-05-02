@@ -1,5 +1,3 @@
-
-
 import 'package:exploresl_login/pages/auth_page.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -272,6 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'lastName': lastName,
         'country': country,
         'email': email,
+        'type': 'tourist',
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
