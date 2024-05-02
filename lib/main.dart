@@ -1,7 +1,9 @@
+import 'package:exploresl_login/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'pages/guideSignUp.dart';
+import 'pages/guides.dart';
 import 'pages/touristSignIn.dart';
 
 void main() async {
@@ -17,6 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: CreateAccountPage());
+    return const MaterialApp(home: HomeScreen());
   }
 }

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     User? user = await auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
-      print("user successfull");
+      print("user successful");
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const Home()));
     } else {

@@ -1,20 +1,82 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../ThisIsForGuides.dart';
 import 'HomePage.dart';
 
+// ignore: use_key_in_widget_constructors
 class CreateAccountPage extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _CreateAccountPageState createState() => _CreateAccountPageState();
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController _documentController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _documentController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _addImageController = TextEditingController();
+
+  String get name => _nameController.text;
+  String get email => _emailController.text;
+  String get password => _passwordController.text;
+  String get confirmPassword => _confirmPasswordController.text;
+  String get document => _documentController.text;
+  String get phoneNumber => _phoneNumberController.text;
+  String get image => _addImageController.text;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _documentController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _addImageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> signUpGuide(
+    String name,
+    String email,
+    String password,
+    String confirmPassword,
+    String document,
+    String phoneNumber,
+    String image,
+  ) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+      await user!.updateDisplayName(name);
+      await user.reload();
+      user = auth.currentUser;
+
+      FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
+        'uid': user.uid,
+        'name': name,
+        'email': email,
+        'document': document,
+        'phoneNumber': phoneNumber,
+        'image': image,
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else {
+        print(e.code);
+      }
+    }
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
@@ -198,17 +260,42 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
               ),
               const SizedBox(height: 20.0),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(),
+              GestureDetector(
+              onTap: () async {
+                await signUpGuide(
+                  name,
+                  email,
+                  phoneNumber,
+                  document,
+                  image,
+                  password,
+                  confirmPassword,
+                  
+                ).then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyWidget()));
+                });
+                ;
+              },
+              child: Container(
+                width: double.infinity,
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Create Account",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
-                child: const Text('Create Account'),
-              )
+                  ),
+                ),
+              ),
+            ),
             ],
           ),
         ),
