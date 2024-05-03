@@ -101,7 +101,7 @@ flutter:
     - lib/images/destinations/jaffna.jpg
     - lib/images/destinations/matale.jpeg
     - lib/images/destinations_page/c2.jpg
-    - lib/images/destination_page/colombo.png
+    - lib/images/destination_page/colombo.png.png
     - lib/images/destination_page/g2.jpg
     - lib/images/destination_page/galle.png
     - lib/images/destination_page/k2.jpg
