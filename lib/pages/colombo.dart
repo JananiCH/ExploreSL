@@ -23,7 +23,7 @@ class colombo extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
-                  'assets/c2.jpg', // Path to your image asset
+                  'lib/images/destination_page/c2.jpg', // Path to your image asset
                 ),
               ),
             ),
