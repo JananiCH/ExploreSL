@@ -103,6 +103,17 @@ flutter:
     - lib/images/destination_page/g2.jpg
     - lib/images/destination_page/galle.png
     - lib/images/destination_page/k2.jpg
+    - lib/images/destination_page/Kandy,png.png
+    - lib/images/destination_page/n2.jpg
+    - lib/images/destination_page/nuwaraeliya.png
+    - lib/images/destination_page/p2.jpg
+    - lib/images/destination_page/polonnaruwa,png.jpg
+    - lib/images/destination_page/pi2.jpg
+    - lib/images/destination_page/s2.jpg
+    - lib/images/destination_page/sigiriya.png
+    - lib/images/destination_page/udawalawa.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
