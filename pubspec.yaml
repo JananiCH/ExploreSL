@@ -101,6 +101,7 @@ flutter:
     - lib/images/destinations_page/c2.jpg
     - lib/images/destination_page/colombo.png.png
     - lib/images/destination_page/g2.jpg
+    - lib/images/destination_page/galle.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
