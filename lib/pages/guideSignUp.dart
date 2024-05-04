@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../ThisIsForGuides.dart';
@@ -82,13 +85,24 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
-      // Handle the picked image file (e.g., upload to Firebase Storage)
-      // You can implement the upload logic here
-      print('Image picked: ${pickedFile.path}');
-    } else {
-      print('No image selected.');
+
+      // Upload the picked image file to Firebase Storage
+      Reference storageReference = FirebaseStorage.instance.ref().child('users/uid/${DateTime.now()}.png');
+      UploadTask uploadTask = storageReference.putFile(File(pickedFile.path));
+      await uploadTask.whenComplete((){
+        print('image uploaded to firebase');
+      });
+
+      // Get the download URL of the uploaded image file
+      String getDownloadURL = await storageReference.getDownloadURL();
+
+      // Set the image URL to the _addImageController
+      _addImageController.text = getDownloadURL;
+    }else{
+      print('no image selected');
     }
   }
+  
 
   Future<void> _pickDocument() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
