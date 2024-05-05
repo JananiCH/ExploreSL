@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 
 class ScreenA extends StatelessWidget {
   final List<String> imagePaths = [
-    "lib/images/destinations_page/Kandy,png.png",
-    "lib/images/destinations_page/nuwaraeliya.png",
-    "lib/images/destinations_page/galle.png",
-    "lib/images/destinations_page/colombo.png.png",
-    "lib/images/destinations_page/polonnaruwa,png.jpg",
-    "lib/images/destinations_page/sigiriya.png",
-    "lib/images/destinations_page/udawalawa.png",
+    "lib/images/pictures_d/Kandy,png.png",
+    "lib/images/pictures_d/nuwaraeliya.png",
+    "lib/images/pictures_d/galle.png",
+    "lib/images/pictures_d/colombo.png.png",
+    "lib/images/pictures_d/polonnaruwa,png.jpg",
+    "lib/images/pictures_d/sigiriya.png",
+    "lib/images/pictures_d/udawalawa.png",
   ];
 
   final List<Widget Function(BuildContext)> pageRoutes = [

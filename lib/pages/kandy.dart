@@ -23,7 +23,7 @@ class Kandy extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
-                  'lib/images/destinations_page/k2.jpg', // Path to your image asset
+                  'lib/images/pictures_d/k2.jpg', // Path to your image asset
                 ),
               ),
             ),

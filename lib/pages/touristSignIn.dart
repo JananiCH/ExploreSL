@@ -306,7 +306,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextField(
               controller: lastnameController,
               decoration: const InputDecoration(
-                labelText: 'lastname',
+                labelText: 'Last Name',
               ),
             ),
             const SizedBox(height: 12.0),
@@ -407,7 +407,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 child: const Center(
                   child: Text(
-                    "SignUp",
+                    "Sign Up",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,

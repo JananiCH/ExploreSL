@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: const Center(
                       child: Text(
-                        "login",
+                        "Log In",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

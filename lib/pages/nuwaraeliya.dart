@@ -23,7 +23,7 @@ class NuwaraEliya extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
-                  'lib/images/destinations_page/n2.jpg', // Path to your image asset
+                  'lib/images/pictures_d/nuwaraeliya.png', // Path to your image asset
                 ),
               ),
             ),
