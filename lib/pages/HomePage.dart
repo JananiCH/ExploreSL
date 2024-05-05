@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:exploresl_login/pages/ScreenA.dart';
 import 'package:exploresl_login/pages/choose_user.dart';
 import 'package:exploresl_login/pages/destinations.dart';
 import 'package:exploresl_login/pages/guides.dart';
@@ -153,7 +154,7 @@ class _HomeState extends State<Home> {
                       autoPlayCurve: Curves.fastOutSlowIn,
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
-                      autoPlayInterval: const Duration(seconds: 2),
+                      autoPlayInterval: const Duration(seconds: 4),
                       enlargeCenterPage: true,
                       aspectRatio: 7.0,
                       onPageChanged: (index, reason) {
@@ -227,7 +228,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const destinations(),
+                        builder: (context) => ScreenA(),
                       ),
                     );
                   },
