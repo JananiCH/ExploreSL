@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Kandy extends StatelessWidget {
-  const Kandy({Key? key}) : super(key: key);
+class Udawalawa extends StatelessWidget {
+  const Udawalawa({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class Kandy extends StatelessWidget {
       appBar: AppBar(
         title: const Flexible(
           child: Text(
-            'Kandy',
+            'Pinnawala',
             overflow: TextOverflow.ellipsis, // Handles overflow by ellipsis
           ),
         ),
@@ -23,7 +23,7 @@ class Kandy extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
-                  'lib/images/destinations_page/k2.jpg', // Path to your image asset
+                  'lib/images/destinations_page/pi2.jpg', // Path to your image asset
                 ),
               ),
             ),
@@ -39,7 +39,7 @@ class Kandy extends StatelessWidget {
                 children: [
                   // Add your content here
                   Text(
-                    'Kandy is both an administrative and religious city and the capital of the Central Province . Kandy is the home of the Temple of the Tooth Relic (Sri Dalada Maligawa), one of the most sacred places of worship in the Buddhist world. It was declared a World Heritage Site by UNESCO in 1988.',
+                    'Pinnawala is a locality in Rambukkana town in Kegalle district of Sri Lanka. It is located about 90 kilometers from Colombo city. Pinnawala is one of the main tourist areas in Sri Lanka.The Pinnawala Elephant Orphanage, the only one in the world, is also home to Sri Lanka s largest and only open- air zoo.',
                     style: TextStyle(fontSize: 16),
                   ),
                 ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Kandy extends StatelessWidget {
-  const Kandy({Key? key}) : super(key: key);
+class NuwaraEliya extends StatelessWidget {
+  const NuwaraEliya({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class Kandy extends StatelessWidget {
       appBar: AppBar(
         title: const Flexible(
           child: Text(
-            'Kandy',
+            'Nuwara Eliya',
             overflow: TextOverflow.ellipsis, // Handles overflow by ellipsis
           ),
         ),
@@ -18,12 +18,12 @@ class Kandy extends StatelessWidget {
         children: [
           SizedBox.expand(
             child: Transform.scale(
-              scale: 360 / MediaQuery.of(context).size.width,
+              scale: 300 / MediaQuery.of(context).size.width,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
-                  'lib/images/destinations_page/k2.jpg', // Path to your image asset
+                  'lib/images/destinations_page/n2.jpg', // Path to your image asset
                 ),
               ),
             ),
@@ -39,7 +39,7 @@ class Kandy extends StatelessWidget {
                 children: [
                   // Add your content here
                   Text(
-                    'Kandy is both an administrative and religious city and the capital of the Central Province . Kandy is the home of the Temple of the Tooth Relic (Sri Dalada Maligawa), one of the most sacred places of worship in the Buddhist world. It was declared a World Heritage Site by UNESCO in 1988.',
+                    'Nuwara Eliya is a beautiful city located in a valley in the central hills of Sri Lanka. Located at a height of 1868 meters above sea level, this city belongs to the Nuwara Eliya district. Mount Piduruthalagala, the highest mountain in Sri Lanka, is also located near this city.',
                     style: TextStyle(fontSize: 16),
                   ),
                 ],

@@ -1,12 +1,14 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../ThisIsForGuides.dart';
-import 'HomePage.dart';
+import 'package:logger/logger.dart';
 
 // ignore: use_key_in_widget_constructors
 class CreateAccountPage extends StatefulWidget {
@@ -21,8 +23,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _documentController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final TextEditingController _addImageController = TextEditingController();
+
+  final Logger logger = Logger();
 
   String get name => _nameController.text;
   String get email => _emailController.text;
@@ -80,13 +85,28 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   }
 
   Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
-    if (pickedFile != null) {
-      // Handle the picked image file (e.g., upload to Firebase Storage)
-      // You can implement the upload logic here
-      print('Image picked: ${pickedFile.path}');
-    } else {
-      print('No image selected.');
+    try {
+      final pickedFile = await ImagePicker().pickImage(source: source);
+      if (pickedFile != null) {
+        // Upload the picked image file to Firebase Storage
+        Reference storageReference = FirebaseStorage.instance
+            .ref()
+            .child('users/users/uid/${DateTime.now()}.png');
+        UploadTask uploadTask = storageReference.putFile(File(pickedFile.path));
+        await uploadTask.whenComplete(() {
+          logger.i('image uploaded to firebase');
+        });
+
+        // Get the download URL of the uploaded image file
+        String getDownloadURL = await storageReference.getDownloadURL();
+
+        // Set the image URL to the _addImageController
+        _addImageController.text = getDownloadURL;
+      } else {
+        logger.w('no image selected');
+      }
+    } catch (e, stackTrace) {
+      logger.e('Ai me: $e', error: e, stackTrace: stackTrace);
     }
   }
 
