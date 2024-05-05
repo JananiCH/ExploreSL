@@ -44,6 +44,7 @@ dependencies:
   image_picker: ^1.1.1
   file_picker: ^8.0.3
   firebase_storage: ^11.7.4
+  logger: ^2.2.0
   
   
 
@@ -100,11 +101,6 @@ flutter:
     - lib/images/destinations/nuwaraeliya.jpeg
     - lib/images/destinations/jaffna.jpg
     - lib/images/destinations/matale.jpeg
-    - lib/images/destinations_page/c2.jpg
-    - lib/images/destination_page/colombo.png.png
-    - lib/images/destination_page/g2.jpg
-    - lib/images/destination_page/galle.png
-    - lib/images/destination_page/k2.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
