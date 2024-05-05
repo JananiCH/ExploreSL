@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:exploresl_login/pages/ScreenA.dart';
 import 'package:exploresl_login/pages/choose_user.dart';
 import 'package:exploresl_login/pages/destinations.dart';
 import 'package:exploresl_login/pages/guides.dart';
@@ -227,7 +228,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const destinations(),
+                        builder: (context) => ScreenA(),
                       ),
                     );
                   },

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:logger/logger.dart';
 
 // ignore: use_key_in_widget_constructors
 class CreateAccountPage extends StatefulWidget {
@@ -26,8 +26,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _addImageController = TextEditingController();
-
-  final Logger logger = Logger();
+  final TextEditingController _additionalDetailsController =
+      TextEditingController();
 
   String get name => _nameController.text;
   String get email => _emailController.text;
@@ -36,6 +36,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   String get document => _documentController.text;
   String get phoneNumber => _phoneNumberController.text;
   String get image => _addImageController.text;
+  String get additionalDetails => _additionalDetailsController.text;
 
   @override
   void dispose() {
@@ -46,16 +47,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     _addImageController.dispose();
+    _additionalDetailsController.dispose();
     super.dispose();
   }
 
-  Future<void> signUpGuide(
-    String name,
-    String email,
-    String document,
-    String phoneNumber,
-    String image,
-  ) async {
+  Future<void> signUpGuide(String name, String email, String document,
+      String phoneNumber, String image, String additionalDetails) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
@@ -74,6 +71,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         'phoneNumber': phoneNumber,
         'image': image,
         'type': 'guide',
+        'additionalDetails': additionalDetails,
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -91,10 +89,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         // Upload the picked image file to Firebase Storage
         Reference storageReference = FirebaseStorage.instance
             .ref()
-            .child('users/users/uid/${DateTime.now()}.png');
+            .child('users/Image/${DateTime.now()}.png');
         UploadTask uploadTask = storageReference.putFile(File(pickedFile.path));
         await uploadTask.whenComplete(() {
-          logger.i('image uploaded to firebase');
+          print('image uploaded to firebase');
         });
 
         // Get the download URL of the uploaded image file
@@ -103,10 +101,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         // Set the image URL to the _addImageController
         _addImageController.text = getDownloadURL;
       } else {
-        logger.w('no image selected');
+        print('no image selected');
       }
     } catch (e, stackTrace) {
-      logger.e('Ai me: $e', error: e, stackTrace: stackTrace);
+      log(e.toString());
     }
   }
 
@@ -120,10 +118,22 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ],
     );
     if (result != null) {
-      String? filePath = result.files.single.path;
-      print('Document picked: $filePath');
+      Reference storageReference = FirebaseStorage.instance
+          .ref()
+          .child('users/doc/${DateTime.now()}.pdf');
+      // Upload the file to firebase
+      UploadTask uploadTask =
+          storageReference.putFile(File(result.files.single.path!));
+      await uploadTask.whenComplete(() {
+        print('document uploaded to firebase');
+      });
+
+      String getDownloadURL = await storageReference.getDownloadURL();
+
+      // Set the image URL to the _addImageController
+      _additionalDetailsController.text = getDownloadURL;
     } else {
-      print('No document selected.');
+      print('no document selected');
     }
   }
 
@@ -221,6 +231,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
               const SizedBox(height: 12.0),
               TextFormField(
+                controller: _additionalDetailsController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 6,
                 decoration: const InputDecoration(
@@ -289,6 +300,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     phoneNumber,
                     document,
                     image,
+                    additionalDetails,
                   ).then((value) {
                     Navigator.push(
                         context,
