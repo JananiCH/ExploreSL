@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: signIn,
                   child: Container(
-                    width: double.infinity,
+                    width: 350,
                     height: 45,
                     decoration: BoxDecoration(
                       color: Colors.blue,
