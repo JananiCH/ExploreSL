@@ -45,6 +45,7 @@ dependencies:
   file_picker: ^8.0.3
   firebase_storage: ^11.7.4
   logger: ^2.2.0  
+  cached_network_image: ^3.3.1
   
 
 dev_dependencies:
@@ -101,16 +102,16 @@ flutter:
     - lib/images/destinations/jaffna.jpg
     - lib/images/destinations/matale.jpeg
     - lib/images/pictures_d/c2.jpg
-    - lib/images/pictures_d/colombo.png.png
+    - lib/images/pictures_d/colombo.png
     - lib/images/pictures_d/g2.jpg
     - lib/images/pictures_d/galle.png
     - lib/images/pictures_d/k2.jpg
-    - lib/images/pictures_d/Kandy,png.png
+    - lib/images/pictures_d/Kandy.png
     - lib/images/pictures_d/n2.jpg
     - lib/images/pictures_d/nuwaraeliya.png
     - lib/images/pictures_d/p2.jpg
     - lib/images/pictures_d/pi2.jpg
-    - lib/images/pictures_d/polonnaruwa,png.jpg
+    - lib/images/pictures_d/polonnaruwa.png
     - lib/images/pictures_d/s2.jpg
     - lib/images/pictures_d/sigiriya.png
     - lib/images/pictures_d/udawalawa.png

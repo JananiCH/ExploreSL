@@ -394,7 +394,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   email,
                 ).then((value) {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                      MaterialPageRoute(builder: (context) => const HomeScreen()));
                 });
                 ;
               },

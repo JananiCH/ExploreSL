@@ -1,9 +1,17 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:exploresl_login/pages/ScreenA.dart';
 import 'package:exploresl_login/pages/choose_user.dart';
 import 'package:exploresl_login/pages/destinations.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../models/user_model.dart';
+import 'GuideProfile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -30,16 +38,22 @@ class _HomeState extends State<Home> {
     'lib/images/destinations/matale.jpeg',
   ];
 
-  final List<String> imageUrls = [
-    'lib/images/all/1.jpeg',
-    'lib/images/all/2.jpeg',
-    'lib/images/all/3.jpeg',
-    'lib/images/all/4.jpeg',
-    'lib/images/all/5.jpeg',
-    'lib/images/all/6.jpeg',
-    'lib/images/all/7.jpeg',
-    'lib/images/all/8.jpeg',
-  ];
+  Stream<List<User>> getAllUsers() async* {
+    final usersCollection = FirebaseFirestore.instance.collection('users');
+
+    try {
+      final snapshot = usersCollection.snapshots();
+
+      yield* snapshot.map((event) {
+        final list = event.docs.where((element) {
+          return element["type"] == "guide";
+        });
+        return list.map((e) => User.fromMap(e.data())).toList();
+      });
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +167,7 @@ class _HomeState extends State<Home> {
                       autoPlayCurve: Curves.fastOutSlowIn,
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
-                      autoPlayInterval: const Duration(seconds: 2),
+                      autoPlayInterval: const Duration(seconds: 4),
                       enlargeCenterPage: true,
                       aspectRatio: 7.0,
                       onPageChanged: (index, reason) {
@@ -227,7 +241,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const destinations(),
+                        builder: (context) => ScreenA(),
                       ),
                     );
                   },
@@ -247,32 +261,58 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const chooseUser(),
-                    ),
-                  );
-                },
-                child: SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: imageUrls.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          radius: 38,
-                          backgroundImage: AssetImage(imageUrls[index]),
-                        ),
-                      );
-                    },
+             // GestureDetector(
+//   onTap: () {
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => TourGuideProfile(),
+//       ),
+//     );
+//   },
+// ),
+
+StreamBuilder(
+  stream: getAllUsers(),
+  builder: (context, snapshot) {
+    if (snapshot.hasError) {
+      return Text("Error: ${snapshot.error}");
+    }
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator();
+    }
+    if (snapshot.hasData) {
+      final List<User>? users = snapshot.data;
+      return SizedBox(
+        height: 100,
+        child: ListView.builder(
+          itemCount: users?.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector( // Wrap the Image in a GestureDetector for navigation
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TourGuideProfile(), // Replace with your guide profile page
                   ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(users![index].image),
                 ),
               ),
+            );
+          },
+        ),
+      );
+    }
+    return CircularProgressIndicator(); // Return a loading indicator while waiting for data
+  },
+),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(

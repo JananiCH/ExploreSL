@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: signIn,
                   child: Container(
-                    width: double.infinity,
+                    width: 350,
                     height: 45,
                     decoration: BoxDecoration(
                       color: Colors.blue,
