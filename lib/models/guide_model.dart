@@ -1,14 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class User {
+class Guide {
   final String uid;
   final String name;
   final String email;
+
   final String document;
   final String phoneNumber;
   final String image;
   final String additionalDetails;
-  User({
+  
+  Guide({
     required this.uid,
     required this.name,
     required this.email,
@@ -17,9 +20,8 @@ class User {
     required this.image,
     required this.additionalDetails,
   });
-  
 
-  User copyWith({
+  Guide copyWith({
     String? uid,
     String? name,
     String? email,
@@ -28,7 +30,7 @@ class User {
     String? image,
     String? additionalDetails,
   }) {
-    return User(
+    return Guide(
       uid: uid ?? this.uid,
       name: name ?? this.name,
       email: email ?? this.email,
@@ -51,8 +53,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory Guide.fromMap(Map<String, dynamic> map) {
+    return Guide(
       uid: map['uid'] as String,
       name: map['name'] as String,
       email: map['email'] as String,
@@ -65,15 +67,15 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Guide.fromJson(String source) => Guide.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'User(uid: $uid, name: $name, email: $email, document: $document, phoneNumber: $phoneNumber, image: $image, additionalDetails: $additionalDetails)';
+    return 'Guide(uid: $uid, name: $name, email: $email, document: $document, phoneNumber: $phoneNumber, image: $image, additionalDetails: $additionalDetails)';
   }
 
   @override
-  bool operator ==(covariant User other) {
+  bool operator ==(covariant Guide other) {
     if (identical(this, other)) return true;
   
     return 

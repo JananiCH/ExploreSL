@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     User? user = await auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       print("user successful");
+      
 
       //get user data from firestore
       var userData = await FirebaseFirestore.instance

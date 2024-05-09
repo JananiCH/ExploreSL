@@ -2,6 +2,7 @@ import 'package:exploresl_login/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'pages/GuideProfile.dart';
 import 'pages/HomePage.dart';
 import 'pages/guideSignUp.dart';
 import 'pages/guides.dart';
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+    return const MaterialApp(home: HomeScreen());
   }
 }
