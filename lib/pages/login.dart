@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     User? user = await auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       print("user successful");
+      
 
       //get user data from firestore
       var userData = await FirebaseFirestore.instance
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: signIn,
                   child: Container(
-                    width: double.infinity,
+                    width: 350,
                     height: 45,
                     decoration: BoxDecoration(
                       color: Colors.blue,

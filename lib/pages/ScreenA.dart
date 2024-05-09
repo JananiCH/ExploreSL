@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 
 class ScreenA extends StatelessWidget {
   final List<String> imagePaths = [
-    "lib/images/pictures_d/Kandy,png.png",
+    "lib/images/pictures_d/Kandy.png",
     "lib/images/pictures_d/nuwaraeliya.png",
     "lib/images/pictures_d/galle.png",
-    "lib/images/pictures_d/colombo.png.png",
-    "lib/images/pictures_d/polonnaruwa,png.png",
+    "lib/images/pictures_d/colombo.png",
+    "lib/images/pictures_d/polonnaruwa.png",
     "lib/images/pictures_d/sigiriya.png",
     "lib/images/pictures_d/udawalawa.png",
   ];

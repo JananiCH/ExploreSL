@@ -81,7 +81,7 @@ class chooseUser extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ),
                 child: const Text(
-                  'I am a tour guide',
+                  'I am a Tour guide',
                   style: TextStyle(
                     fontSize: 18,
                   ),

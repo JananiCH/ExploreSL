@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:exploresl_login/pages/guides.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,32 +8,38 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-// ignore: use_key_in_widget_constructors
 class CreateAccountPage extends StatefulWidget {
+  const CreateAccountPage({super.key});
+
   @override
-  // ignore: library_private_types_in_public_api
-  _CreateAccountPageState createState() => _CreateAccountPageState();
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _experienceController = TextEditingController();
+  final TextEditingController _languagesController = TextEditingController();
   final TextEditingController _documentController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  final TextEditingController _addImageController = TextEditingController();
   final TextEditingController _additionalDetailsController =
       TextEditingController();
+
+  File? profileImage;
 
   String get name => _nameController.text;
   String get email => _emailController.text;
   String get password => _passwordController.text;
   String get confirmPassword => _confirmPasswordController.text;
   String get document => _documentController.text;
+  String get dob => _dobController.text;
+  String get languages => _experienceController.text;
+  String get experience => _languagesController.text;
   String get phoneNumber => _phoneNumberController.text;
-  String get image => _addImageController.text;
   String get additionalDetails => _additionalDetailsController.text;
 
   @override
@@ -43,42 +47,70 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     _nameController.dispose();
     _emailController.dispose();
     _phoneNumberController.dispose();
+    _dobController.dispose();
+    _experienceController.dispose();
+    _languagesController.dispose();
     _documentController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    _addImageController.dispose();
     _additionalDetailsController.dispose();
     super.dispose();
   }
 
-  Future<void> signUpGuide(String name, String email, String document,
-      String phoneNumber, String image, String additionalDetails) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
+  Future<void> signUpGuide() async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      user = userCredential.user;
-      await user!.updateDisplayName(name);
-      await user.reload();
-      user = auth.currentUser;
+      final uid = await signInUser(email, password);
+      String imageDownloadUrl = "";
 
-      FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
-        'uid': user.uid,
+      if (profileImage != null) {
+        imageDownloadUrl = await uploadProfileImage(profileImage!, uid);
+      }
+
+      FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'uid': uid,
         'name': name,
         'email': email,
+        'dob': dob,
+        'experience': experience,
+        'languages': languages,
         'document': document,
         'phoneNumber': phoneNumber,
-        'image': image,
+        'image': imageDownloadUrl,
         'type': 'guide',
         'additionalDetails': additionalDetails,
       });
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else {
-        print(e.code);
+      throw Exception(e.code);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> signInUser(String email, String password) async {
+    try {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      final user = userCredential.user;
+      if (user == null) {
+        throw Exception("User not found");
       }
+      return user.uid;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> uploadProfileImage(File image, String uid) async {
+    try {
+      Reference storageReference =
+          FirebaseStorage.instance.ref().child('user/$uid/profile.png');
+      UploadTask uploadTask = storageReference.putFile(image);
+      await uploadTask.whenComplete(() {});
+      final downloadUrl = storageReference.getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -86,25 +118,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     try {
       final pickedFile = await ImagePicker().pickImage(source: source);
       if (pickedFile != null) {
-        // Upload the picked image file to Firebase Storage
-        Reference storageReference = FirebaseStorage.instance
-            .ref()
-            .child('users/Image/${DateTime.now()}.png');
-        UploadTask uploadTask = storageReference.putFile(File(pickedFile.path));
-        await uploadTask.whenComplete(() {
-          print('image uploaded to firebase');
-        });
-
-        // Get the download URL of the uploaded image file
-        String getDownloadURL = await storageReference.getDownloadURL();
-
-        // Set the image URL to the _addImageController
-        _addImageController.text = getDownloadURL;
-      } else {
-        print('no image selected');
+        setState(() => profileImage = File(pickedFile.path));
       }
-    } catch (e, stackTrace) {
-      log(e.toString());
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -131,7 +148,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       String getDownloadURL = await storageReference.getDownloadURL();
 
       // Set the image URL to the _addImageController
-      _additionalDetailsController.text = getDownloadURL;
+      _documentController.text = getDownloadURL;
     } else {
       print('no document selected');
     }
@@ -202,13 +219,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
               const SizedBox(height: 12.0),
               TextFormField(
-                controller: _phoneNumberController,
-                decoration: const InputDecoration(
-                  labelText: 'Phone Number',
-                ),
-                keyboardType: TextInputType.phone,
-              ),
-              TextFormField(
                 obscureText: true,
                 controller: _passwordController,
                 decoration: const InputDecoration(
@@ -223,6 +233,34 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   labelText: 'confirm Password',
                 ),
                 keyboardType: TextInputType.visiblePassword,
+              ),
+              TextFormField(
+                controller: _phoneNumberController,
+                decoration: const InputDecoration(
+                  labelText: 'Phone Number',
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+              TextFormField(
+                controller: _dobController,
+                decoration: const InputDecoration(
+                  labelText: 'DOB',
+                ),
+                keyboardType: TextInputType.datetime,
+              ),
+              TextFormField(
+                controller: _languagesController,
+                decoration: const InputDecoration(
+                  labelText: 'languages',
+                ),
+                keyboardType: TextInputType.text,
+              ),
+              TextFormField(
+                controller: _experienceController,
+                decoration: const InputDecoration(
+                  labelText: 'Experience',
+                ),
+                keyboardType: TextInputType.text,
               ),
               const SizedBox(height: 15.0),
               const Text(
@@ -249,23 +287,32 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12.0),
-              GestureDetector(
-                onTap: () {
-                  _showImagePickerDialog();
-                },
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Icon(
-                    Icons.camera_alt,
-                    size: 30.0,
-                    color: Colors.grey[500],
-                  ),
-                ),
+              InkWell(
+                onTap: () => _showImagePickerDialog(),
+                child: profileImage != null
+                    ? Center(
+                        child: ClipOval(
+                          child: Image.file(
+                            profileImage!,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Icon(
+                          Icons.camera_alt,
+                          size: 30.0,
+                          color: Colors.grey[500],
+                        ),
+                      ),
               ),
               const SizedBox(height: 20.0),
               const Text(
@@ -294,20 +341,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               const SizedBox(height: 20.0),
               GestureDetector(
                 onTap: () async {
-                  await signUpGuide(
-                    name,
-                    email,
-                    phoneNumber,
-                    document,
-                    image,
-                    additionalDetails,
-                  ).then((value) {
+                  signUpGuide().then((value) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                   });
-                  ;
                 },
                 child: Container(
                   width: double.infinity,
