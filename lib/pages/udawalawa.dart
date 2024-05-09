@@ -9,7 +9,7 @@ class Udawalawa extends StatelessWidget {
       appBar: AppBar(
         title: const Flexible(
           child: Text(
-            'Udawalawa',
+            'Pinnawala',
             overflow: TextOverflow.ellipsis, // Handles overflow by ellipsis
           ),
         ),
