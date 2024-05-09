@@ -19,11 +19,15 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
- 
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _experienceController = TextEditingController();
+  final TextEditingController _languagesController = TextEditingController();
   final TextEditingController _documentController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
-  final TextEditingController _additionalDetailsController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _additionalDetailsController =
+      TextEditingController();
 
   File? profileImage;
 
@@ -32,7 +36,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   String get password => _passwordController.text;
   String get confirmPassword => _confirmPasswordController.text;
   String get document => _documentController.text;
-
+  String get dob => _dobController.text;
+  String get languages => _experienceController.text;
+  String get experience => _languagesController.text;
   String get phoneNumber => _phoneNumberController.text;
   String get additionalDetails => _additionalDetailsController.text;
 
@@ -41,7 +47,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     _nameController.dispose();
     _emailController.dispose();
     _phoneNumberController.dispose();
-
+    _dobController.dispose();
+    _experienceController.dispose();
+    _languagesController.dispose();
     _documentController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -62,7 +70,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         'uid': uid,
         'name': name,
         'email': email,
-
+        'dob': dob,
+        'experience': experience,
+        'languages': languages,
         'document': document,
         'phoneNumber': phoneNumber,
         'image': imageDownloadUrl,
@@ -231,7 +241,27 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
                 keyboardType: TextInputType.phone,
               ),
-              
+              TextFormField(
+                controller: _dobController,
+                decoration: const InputDecoration(
+                  labelText: 'DOB',
+                ),
+                keyboardType: TextInputType.datetime,
+              ),
+              TextFormField(
+                controller: _languagesController,
+                decoration: const InputDecoration(
+                  labelText: 'languages',
+                ),
+                keyboardType: TextInputType.text,
+              ),
+              TextFormField(
+                controller: _experienceController,
+                decoration: const InputDecoration(
+                  labelText: 'Experience',
+                ),
+                keyboardType: TextInputType.text,
+              ),
               const SizedBox(height: 15.0),
               const Text(
                 'Additional details',

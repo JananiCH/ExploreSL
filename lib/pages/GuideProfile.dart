@@ -10,6 +10,7 @@ class TourGuideProfile extends StatelessWidget {
     Key? key,
     required this.guide,
   }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,6 @@ class TourGuideProfile extends StatelessWidget {
               const SizedBox(height: 8),
               Text(guide.email),
               Text(guide.phoneNumber),
-      
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {

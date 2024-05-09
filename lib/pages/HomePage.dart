@@ -292,8 +292,8 @@ class _HomeState extends State<Home> {
                               child: ClipOval(
                                   child: Image.network(
                                 users![index].image,
-                                width: 60,
-                                height: 60,
+                                width: 75,
+                                height: 75,
                               )),
                             ),
                           );
