@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/ScreenA.dart';
 import 'package:exploresl_login/pages/choose_user.dart';
-import 'package:exploresl_login/pages/destinations.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
