@@ -13,7 +13,7 @@ class ScreenA extends StatelessWidget {
     "lib/images/pictures_d/nuwaraeliya.png",
     "lib/images/pictures_d/galle.png",
     "lib/images/pictures_d/colombo.png",
-    "lib/images/pictures_d/polonnaruwa.jpg",
+    "lib/images/pictures_d/polonnaruwa.png",
     "lib/images/pictures_d/sigiriya.png",
     "lib/images/pictures_d/udawalawa.png",
   ];
