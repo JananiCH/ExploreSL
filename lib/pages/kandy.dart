@@ -7,6 +7,7 @@ class Kandy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 135, 202, 150),
         title: const Flexible(
           child: Text(
             'Kandy',
@@ -26,7 +27,8 @@ class Kandy extends StatelessWidget {
               children: [
                 // Add your content here
                 Text(
-                  'Kandy is both an administrative and religious city and the capital of the Central Province . Kandy is the home of the Temple of the Tooth Relic (Sri Dalada Maligawa), one of the most sacred places of worship in the Buddhist world. It was declared a World Heritage Site by UNESCO in 1988.',
+                  'Kandy is a cosmopolitan city in the Central Province of Sri Lanka. It was the last headquarters of the ancient period of the Kingdoms of Sri Lanka. The city lies in the middle of the hills of the Kandy Plateau, which also traverses a vast region of tropical plantations, primarily tea. Kandy is both an administrative and a religious municipality, as well as being the capital of the Central Province of the country. '
+                  'Kandy houses the Temple of the Tooth Relic (Sri Dalada Maligawa), among the most sacred places of devotion to the Buddhist community. It was declared a UNESCO World Heritage Site in 1988.',
                   style: TextStyle(fontSize: 16),
                 ),
               ],

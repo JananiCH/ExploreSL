@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/login.dart';
@@ -79,9 +81,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         'type': 'guide',
         'additionalDetails': additionalDetails,
       });
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.code);
+    
     } catch (e) {
+      log(e.toString());
       rethrow;
     }
   }

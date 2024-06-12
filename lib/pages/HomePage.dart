@@ -60,23 +60,25 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 169, 228, 241),
         automaticallyImplyLeading: false,
         title: const SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      radius: 20,
+                      radius: 25,
                       backgroundImage: AssetImage('lib/images/galle/5.jpeg'),
                     ),
                   ),
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           'Welcome to ExploreSL,',
@@ -104,108 +106,122 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.search_sharp,
-                      size: 36,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1.5, color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.search_sharp, size: 24),
+                    Padding(padding: EdgeInsets.only(right: 16)),
+                    Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: "Search for places or guides",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              width: 1.5,
-                              color: Colors.grey.shade300,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              width: 1.5,
-                              color: Colors.grey.shade500,
-                            ),
-                          ),
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Top Rated Experiences',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
+            ),
+            const SizedBox(height: 20),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Top Rated Experiences',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 200,
-                child: SizedBox(
-                  height: 300,
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      height: 200,
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
-                      autoPlayInterval: const Duration(seconds: 4),
-                      enlargeCenterPage: true,
-                      aspectRatio: 7.0,
-                    ),
-                    items: imageUrls4.map((url) => Image.asset(url)).toList(),
+            ),
+            SizedBox(
+              height: 200,
+              child: SizedBox(
+                height: 300,
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    height: 200,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayInterval: const Duration(seconds: 4),
+                    enlargeCenterPage: true,
+                    aspectRatio: 7.0,
                   ),
+                  items: imageUrls4.map((url) => Image.asset(url)).toList(),
                 ),
               ),
-              AnimatedSmoothIndicator(
-                activeIndex: myCurrentIndex,
-                count: imageUrls4.length,
-                effect: const WormEffect(
-                    dotHeight: 8,
-                    dotWidth: 8,
-                    dotColor: Colors.grey,
-                    spacing: 5,
-                    activeDotColor: Colors.blue),
-              ),
-              const SizedBox(height: 5),
-              const Row(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Top Destinations',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+            ),
+            AnimatedSmoothIndicator(
+              activeIndex: myCurrentIndex,
+              count: imageUrls4.length,
+              effect: const WormEffect(
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  dotColor: Colors.grey,
+                  spacing: 5,
+                  activeDotColor: Colors.blue),
+            ),
+            const SizedBox(height: 5),
+            const Row(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Top Destinations',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ScreenA(),
+                  ),
+                );
+              },
+              child: SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: imageUrls5.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 38,
+                        backgroundImage: AssetImage(imageUrls5[index]),
+                      ),
+                    );
+                  },
+                ),
               ),
-              const SizedBox(height: 6),
-              GestureDetector(
-                onTap: () {
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -213,115 +229,86 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: imageUrls5.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          radius: 38,
-                          backgroundImage: AssetImage(imageUrls5[index]),
-                        ),
-                      );
-                    },
-                  ),
+                child: const Text(
+                  'See more ➤',
+                  style: TextStyle(fontSize: 15),
                 ),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ScreenA(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'See more ➤',
-                    style: TextStyle(fontSize: 15),
-                  ),
+            ),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Top Guides',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Top Guides',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              StreamBuilder(
-                stream: getAllUsers(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text("Error: ${snapshot.error}");
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  }
-                  if (snapshot.hasData) {
-                    final List<Guide>? users = snapshot.data;
-                    return SizedBox(
-                      height: 100,
-                      child: ListView.builder(
-                        itemCount: users?.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            // Wrap the Image in a GestureDetector for navigation
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TourGuideProfile(
-                                    guide: users[index],
-                                  ), // Replace with your guide profile page
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipOval(
-                                  child: Image.network(
-                                users![index].image,
-                                width: 75,
-                                height: 75,
-                              )),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  }
-                  return const CircularProgressIndicator(); // Return a loading indicator while waiting for data
+            ),
+            StreamBuilder(
+              stream: getAllUsers(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+                if (snapshot.hasData) {
+                  final List<Guide>? users = snapshot.data;
+                  return SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      itemCount: users?.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          // Wrap the Image in a GestureDetector for navigation
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TourGuideProfile(
+                                  guide: users[index],
+                                ), // Replace with your guide profile page
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipOval(
+                                child: Image.network(
+                              users![index].image,
+                              width: 75,
+                              height: 75,
+                            )),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+                return const CircularProgressIndicator(); // Return a loading indicator while waiting for data
+              },
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Guides(),
+                    ),
+                  );
                 },
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Guides(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'See more ➤',
-                    style: TextStyle(fontSize: 15),
-                  ),
+                child: const Text(
+                  'See more ➤',
+                  style: TextStyle(fontSize: 15),
                 ),
               ),
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
     );
