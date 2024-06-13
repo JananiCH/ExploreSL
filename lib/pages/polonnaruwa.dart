@@ -8,7 +8,7 @@ class Polonnaruwa extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         title: Text(
           'Polonnaruwa',
           style: GoogleFonts.poppins(),
@@ -45,7 +45,7 @@ class Polonnaruwa extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Colors.green,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -86,7 +86,7 @@ class Polonnaruwa extends StatelessWidget {
         children: [
           const Icon(
             Icons.check_circle,
-            color: Colors.blue,
+            color: Colors.green,
             size: 20,
           ),
           const SizedBox(width: 10),

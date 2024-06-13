@@ -8,7 +8,7 @@ class Udawalawa extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepOrangeAccent,
         title: Text(
           'Udawalawa',
           style: GoogleFonts.poppins(),
@@ -42,7 +42,7 @@ class Udawalawa extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Colors.deepOrangeAccent,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -77,7 +77,7 @@ class Udawalawa extends StatelessWidget {
         children: [
           const Icon(
             Icons.check_circle,
-            color: Colors.blue,
+            color: Colors.deepOrangeAccent,
             size: 20,
           ),
           const SizedBox(width: 10),
