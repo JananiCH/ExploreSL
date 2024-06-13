@@ -27,13 +27,43 @@ class _HomeState extends State<Home> {
     'lib/images/places/place3.jpeg',
   ];
 
-  final List<String> imageUrls5 = [
-    'lib/images/destinations/galle.jpeg',
-    'lib/images/destinations/kandy.jpg',
-    'lib/images/destinations/trinco.jpg',
-    'lib/images/destinations/nuwaraeliya.jpeg',
-    'lib/images/destinations/jaffna.jpg',
-    'lib/images/destinations/matale.jpeg',
+  final List<Map<String, String>> destinations = [
+    {
+      'title': 'Galle',
+      'image': 'lib/images/destinations/galle.jpeg',
+      'description':
+          'A beautiful city on the southwest coast known for its fort.'
+    },
+    {
+      'title': 'Kandy',
+      'image': 'lib/images/destinations/kandy.jpg',
+      'description':
+          'A picturesque city in the hills, home to the Temple of the Tooth.'
+    },
+    {
+      'title': 'Trincomalee',
+      'image': 'lib/images/destinations/trinco.jpg',
+      'description':
+          'A port city on the northeast coast known for its beaches and temples.'
+    },
+    {
+      'title': 'Nuwara Eliya',
+      'image': 'lib/images/destinations/nuwaraeliya.jpeg',
+      'description':
+          'A hill station known for its cool climate and tea plantations.'
+    },
+    {
+      'title': 'Jaffna',
+      'image': 'lib/images/destinations/jaffna.jpg',
+      'description':
+          'A vibrant city in the north known for its rich Tamil culture.'
+    },
+    {
+      'title': 'Unawatuna',
+      'image': 'lib/images/destinations/matale.jpeg',
+      'description':
+          'A coastal town famous for its beautiful beaches and coral reefs.'
+    },
   ];
 
   Stream<List<Guide>> getAllUsers() async* {
@@ -70,41 +100,38 @@ class _HomeState extends State<Home> {
           child: SafeArea(
             child: Column(
               children: [
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 20,
-                          backgroundImage:
-                              AssetImage('lib/images/galle/5.jpeg'),
-                        ),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Welcome to ExploreSL,',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage('lib/images/galle/5.jpeg'),
+                      ),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Welcome to ExploreSL,',
+                              style: GoogleFonts.poppins(
+                                fontSize: 24, // Larger font size
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'Discover Sri Lanka with ease',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.black87,
-                                  fontSize: 15,
-                                ),
+                            ),
+                            Text(
+                              'Discover Sri Lanka with ease',
+                              style: GoogleFonts.poppins(
+                                color: Colors.black87,
+                                fontSize: 18, // Larger font size
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -115,9 +142,9 @@ class _HomeState extends State<Home> {
                       hintStyle: GoogleFonts.poppins(),
                       prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(50),
                         borderSide: BorderSide(
-                          width: 1.5,
+                          width: 0.5,
                           color: Colors.grey.shade300,
                         ),
                       ),
@@ -211,43 +238,63 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ScreenA(),
-                      ),
-                    );
-                  },
-                  child: SizedBox(
-                    height: 150, // Adjust height to accommodate the card
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: imageUrls5.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            elevation: 5,
-                            child: Container(
-                              width: 100, // Adjust width as needed
-                              height: 100, // Adjust height as needed
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                image: DecorationImage(
-                                  image: AssetImage(imageUrls5[index]),
-                                  fit: BoxFit.cover,
+                SizedBox(
+                  height: 250, // Adjust height to accommodate the card
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: destinations.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          elevation: 5,
+                          child: SizedBox(
+                            width: 200, // Adjust width as needed
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(15.0),
+                                  ),
+                                  child: Image.asset(
+                                    destinations[index]['image']!,
+                                    width: double.infinity,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    destinations[index]['title']!,
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    destinations[index]['description']!,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                    ),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Align(
