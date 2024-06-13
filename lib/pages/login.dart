@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../ThisIsForGuides.dart';
 import 'HomePage.dart';
@@ -38,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
     User? user = await auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       print("user successful");
-      
 
       //get user data from firestore
       var userData = await FirebaseFirestore.instance
@@ -96,14 +96,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: emailController,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       fillColor: Colors.white70,
                       filled: true,
                       labelText: "Enter Email",
+                      labelStyle: GoogleFonts.poppins(),
                     ),
                   ),
                 ),
@@ -114,14 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: TextField(
                     controller: passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       fillColor: Colors.white70,
                       filled: true,
                       labelText: "Enter Password",
+                      labelStyle: GoogleFonts.poppins(),
                     ),
                   ),
                 ),
@@ -137,7 +139,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               const TextStyle(fontSize: 13, color: Colors.blue),
                         ),
                         onPressed: () {},
-                        child: const Text('Forgot Password?'),
+                        child: Text(
+                          'Forgot Password?',
+                          style: GoogleFonts.poppins(),
+                        ),
                       ),
                     ),
                   ],
@@ -150,12 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 45,
                     decoration: BoxDecoration(
                       color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "Log In",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -178,11 +183,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'or continue with',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Colors.black54,
                         ),
                       ),
@@ -209,10 +214,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           )),
                           onPressed: () {},
-                          child: const Text('Facebook'),
+                          child: Text(
+                            'Facebook',
+                            style: GoogleFonts.poppins(),
+                          ),
                         ),
                       ),
                     ),
@@ -223,10 +231,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           )),
                           onPressed: () {},
-                          child: const Text('Google'),
+                          child: Text(
+                            'Google',
+                            style: GoogleFonts.poppins(),
+                          ),
                         ),
                       ),
                     ),
@@ -237,11 +248,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Create an account',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Colors.grey,
                         ),
                       ),
@@ -251,11 +262,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const chooseUser(),
+                            builder: (context) => const ChooseUser(),
                           ),
                         );
                       },
-                      child: const Text('Sign Up'),
+                      child: Text(
+                        'Sign Up',
+                        style: GoogleFonts.poppins(),
+                      ),
                     ),
                   ],
                 ),

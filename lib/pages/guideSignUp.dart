@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'dart:io';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -81,7 +81,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         'type': 'guide',
         'additionalDetails': additionalDetails,
       });
-    
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -152,7 +151,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       // Set the image URL to the _addImageController
       _documentController.text = getDownloadURL;
     } else {
-      print('no document selected');
+      print('No document selected');
     }
   }
 
@@ -197,7 +196,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Account'),
+        backgroundColor: Colors.blue,
+        title: Text(
+          'Create Guide Account',
+          style: GoogleFonts.poppins(),
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -207,15 +211,17 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'User Name',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
               ),
               const SizedBox(height: 12.0),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
@@ -223,70 +229,79 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               TextFormField(
                 obscureText: true,
                 controller: _passwordController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Password',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.visiblePassword,
               ),
               TextFormField(
                 obscureText: true,
                 controller: _confirmPasswordController,
-                decoration: const InputDecoration(
-                  labelText: 'confirm Password',
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.visiblePassword,
               ),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Phone Number',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.phone,
               ),
               TextFormField(
                 controller: _dobController,
-                decoration: const InputDecoration(
-                  labelText: 'DOB',
+                decoration: InputDecoration(
+                  labelText: 'Date of Birth',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.datetime,
               ),
               TextFormField(
                 controller: _languagesController,
-                decoration: const InputDecoration(
-                  labelText: 'languages',
+                decoration: InputDecoration(
+                  labelText: 'Languages',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.text,
               ),
               TextFormField(
                 controller: _experienceController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Experience',
+                  labelStyle: GoogleFonts.poppins(),
                 ),
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(height: 15.0),
-              const Text(
-                'Additional details',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              Text(
+                'Additional Details',
+                style: GoogleFonts.poppins(
+                    fontSize: 14.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12.0),
               TextFormField(
                 controller: _additionalDetailsController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 6,
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
                       width: 1.0,
                     ),
                   ),
+                  labelStyle: GoogleFonts.poppins(),
                 ),
               ),
               const SizedBox(height: 15.0),
-              const Text(
+              Text(
                 'Upload Guide Image:',
-                style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                    fontSize: 14.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12.0),
               InkWell(
@@ -317,9 +332,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       ),
               ),
               const SizedBox(height: 20.0),
-              const Text(
-                'Upload Required Document:',
-                style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+              Text(
+                'Upload Required Document (Authorised by National Tourism Policy):',
+                style: GoogleFonts.poppins(
+                    fontSize: 14.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10.0),
               GestureDetector(
@@ -357,12 +373,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       "Create Account",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

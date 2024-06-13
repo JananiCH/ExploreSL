@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/pages/auth_page.dart';
 import 'package:exploresl_login/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -274,9 +275,10 @@ class _SignUpPageState extends State<SignUpPage> {
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else
+        print('The Password provided is too weak.');
+      } else {
         print(e.code);
+      }
     }
   }
 
@@ -284,8 +286,12 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: const Text('Sign Up'),
+        backgroundColor: Colors.blue,
+        title: Text(
+          'Sign Up',
+          style: GoogleFonts.poppins(),
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -296,8 +302,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
             TextFormField(
               controller: firstnameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'First Name',
+                labelStyle: GoogleFonts.poppins(),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -305,8 +312,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
             TextField(
               controller: lastnameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Last Name',
+                labelStyle: GoogleFonts.poppins(),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -314,8 +322,9 @@ class _SignUpPageState extends State<SignUpPage> {
             // Email text field
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Email',
+                labelStyle: GoogleFonts.poppins(),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -323,16 +332,18 @@ class _SignUpPageState extends State<SignUpPage> {
             // Password text field
             TextField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Password',
+                labelStyle: GoogleFonts.poppins(),
               ),
               obscureText: true, // Hide the password
             ),
             const SizedBox(height: 16.0),
 
             DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Country',
+                labelStyle: GoogleFonts.poppins(),
               ),
               value: null,
               onChanged: (String? value) {
@@ -348,7 +359,7 @@ class _SignUpPageState extends State<SignUpPage> {
               }).toList(),
             ),
 
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
 
             /*DropdownButtonFormField<String>(
               decoration: const InputDecoration(
@@ -393,10 +404,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   country,
                   email,
                 ).then((value) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
                 });
-                ;
               },
               child: Container(
                 width: double.infinity,
@@ -405,10 +417,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "Sign Up",
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
