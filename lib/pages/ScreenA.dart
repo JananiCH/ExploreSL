@@ -6,6 +6,7 @@ import 'package:exploresl_login/pages/polonnaruwa.dart';
 import 'package:exploresl_login/pages/sigiriya.dart';
 import 'package:exploresl_login/pages/udawalawa.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts package
 
 class ScreenA extends StatelessWidget {
   final List<String> imagePaths = [
@@ -46,7 +47,10 @@ class ScreenA extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Destinations'),
+        title: Text(
+          'Destinations',
+          style: GoogleFonts.poppins(),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -201,7 +205,8 @@ class _AnimatedImageCardState extends State<AnimatedImageCard>
           const SizedBox(height: 10), // Adjust the height of SizedBox as needed
           Text(
             widget.cityName,
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
+              // Use GoogleFonts.poppins for Poppins font
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
