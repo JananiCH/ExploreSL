@@ -58,50 +58,6 @@ class _HomeState extends State<Home> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueAccent,
-        title: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage('lib/images/galle/5.jpeg'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Welcome to ExploreSL,',
-                          style: GoogleFonts.poppins(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          'Discover Sri Lanka with ease',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white70,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -114,6 +70,43 @@ class _HomeState extends State<Home> {
           child: SafeArea(
             child: Column(
               children: [
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              AssetImage('lib/images/galle/5.jpeg'),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Welcome to ExploreSL,',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Discover Sri Lanka with ease',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.black87,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
@@ -139,13 +132,13 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Top Rated Experiences',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.black87,
@@ -190,25 +183,26 @@ class _HomeState extends State<Home> {
                     }).toList(),
                   ),
                 ),
-                const SizedBox(height: 20), // Added space here
+                const SizedBox(height: 20),
                 AnimatedSmoothIndicator(
                   activeIndex: myCurrentIndex,
                   count: imageUrls4.length,
                   effect: const WormEffect(
-                      dotHeight: 8,
-                      dotWidth: 8,
-                      dotColor: Colors.grey,
-                      spacing: 5,
-                      activeDotColor: Colors.blue),
+                    dotHeight: 8,
+                    dotWidth: 8,
+                    dotColor: Colors.grey,
+                    spacing: 5,
+                    activeDotColor: Colors.blue,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Top Destinations',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.black87,
@@ -227,16 +221,29 @@ class _HomeState extends State<Home> {
                     );
                   },
                   child: SizedBox(
-                    height: 100,
+                    height: 150, // Adjust height to accommodate the card
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: imageUrls5.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                            radius: 38,
-                            backgroundImage: AssetImage(imageUrls5[index]),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              width: 100, // Adjust width as needed
+                              height: 100, // Adjust height as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                image: DecorationImage(
+                                  image: AssetImage(imageUrls5[index]),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
                         );
                       },
@@ -254,22 +261,24 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       'See more ➤',
-                      style: TextStyle(fontSize: 15, color: Colors.blue),
+                      style:
+                          GoogleFonts.poppins(fontSize: 15, color: Colors.blue),
                     ),
                   ),
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Top Guides',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.black87),
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black87,
+                      ),
                     ),
                   ),
                 ),
@@ -277,7 +286,10 @@ class _HomeState extends State<Home> {
                   stream: getAllUsers(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
-                      return Text("Error: ${snapshot.error}");
+                      return Text(
+                        "Error: ${snapshot.error}",
+                        style: GoogleFonts.poppins(),
+                      );
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
@@ -331,10 +343,9 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
-                    child: const Text(
-                      'See more ➤',
-                      style: TextStyle(fontSize: 15, color: Colors.blue),
-                    ),
+                    child: Text('See more ➤',
+                        style: GoogleFonts.poppins(
+                            fontSize: 15, color: Colors.blue)),
                   ),
                 ),
               ],
