@@ -11,7 +11,10 @@ class colombo extends StatelessWidget {
         backgroundColor: Colors.purple,
         title: Text(
           'Colombo',
-          style: GoogleFonts.poppins(),
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
           overflow: TextOverflow.ellipsis,
         ),
       ),

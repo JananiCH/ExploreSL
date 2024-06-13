@@ -11,7 +11,10 @@ class NuwaraEliya extends StatelessWidget {
         backgroundColor: Colors.blue,
         title: Text(
           'Nuwara Eliya',
-          style: GoogleFonts.poppins(),
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
           overflow: TextOverflow.ellipsis,
         ),
       ),

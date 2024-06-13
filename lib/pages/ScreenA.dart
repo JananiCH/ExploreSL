@@ -46,30 +46,43 @@ class ScreenA extends StatelessWidget {
     const imageSize = Size(365, 200); // Set the desired image size
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Destinations',
-          style: GoogleFonts.poppins(),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            'Destinations',
+            style: GoogleFonts.poppins(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: imagePaths.length,
-        itemBuilder: (BuildContext context, int index) {
-          return AnimatedImageCard(
-            imagePath: imagePaths[index],
-            cityName: cityNames[index],
-            pageRoute: pageRoutes[index],
-            imageSize: imageSize,
-          );
-        },
-      ),
-    );
+        // Adding a gradient background to the body of the Scaffold
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFFAFAFA), Color.fromARGB(255, 139, 195, 217)],
+            ),
+          ),
+          child: ListView.builder(
+            itemCount: imagePaths.length,
+            itemBuilder: (BuildContext context, int index) {
+              return AnimatedImageCard(
+                imagePath: imagePaths[index],
+                cityName: cityNames[index],
+                pageRoute: pageRoutes[index],
+                imageSize: imageSize,
+              );
+            },
+          ),
+        ));
   }
 }
 

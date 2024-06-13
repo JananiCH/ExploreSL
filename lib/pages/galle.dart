@@ -11,7 +11,10 @@ class galle extends StatelessWidget {
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
           'Galle',
-          style: GoogleFonts.poppins(),
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
           overflow: TextOverflow.ellipsis,
         ),
       ),

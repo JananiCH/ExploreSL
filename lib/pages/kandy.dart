@@ -11,7 +11,10 @@ class Kandy extends StatelessWidget {
         backgroundColor: Colors.green,
         title: Text(
           'Kandy',
-          style: GoogleFonts.poppins(),
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
           overflow: TextOverflow.ellipsis,
         ),
       ),

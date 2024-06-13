@@ -11,7 +11,10 @@ class Udawalawa extends StatelessWidget {
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
           'Udawalawa',
-          style: GoogleFonts.poppins(),
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
           overflow: TextOverflow.ellipsis,
         ),
       ),
