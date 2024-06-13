@@ -53,7 +53,7 @@ class Guides extends StatelessWidget {
                 child: Text(
                   'All around Sri Lanka',
                   style: GoogleFonts.poppins(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
@@ -62,7 +62,7 @@ class Guides extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Tour guides in this section will guide tourists who would like to travel all around Sri Lanka during their stay.',
+                  'If you wish to explore all around Sri Lanka during your stay, our exemplary tour guides in this section are ready to assist you!',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: Colors.black54,
@@ -104,7 +104,7 @@ class Guides extends StatelessWidget {
                 child: Text(
                   'Specific Regions',
                   style: GoogleFonts.poppins(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
@@ -113,7 +113,7 @@ class Guides extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Tour guides in these sections will guide tourists who prefer to explore specific regions only.',
+                  'Our tour guides in this section can assist you if you prefer to explore specific regions of beautiful Sri Lanka. All you have to do is find a guide from the region you wish to explore!',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: Colors.black54,

@@ -1,12 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exploresl_login/models/guide_model.dart';
+import 'package:exploresl_login/pages/ContactNowPage.dart';
 import 'package:exploresl_login/pages/HomePage.dart';
-import 'package:exploresl_login/pages/guides.dart';
-import 'package:exploresl_login/pages/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TourGuideProfile extends StatelessWidget {
   final Guide guide;
+
   const TourGuideProfile({
     Key? key,
     required this.guide,
@@ -29,7 +29,7 @@ class TourGuideProfile extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: SizedBox(
           width: double.infinity,
@@ -43,8 +43,10 @@ class TourGuideProfile extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 guide.name,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
               _buildLabelValueRow('Email:', guide.email),
@@ -55,20 +57,38 @@ class TourGuideProfile extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  // Handle "Contact Now" button press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ContactNowPage(
+                        guidePhoneNumber: guide.phoneNumber,
+                      ),
+                    ),
+                  );
                 },
-                child: const Text('Contact Now'),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                child: Text(
+                  'Contact Now',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
               const SizedBox(height: 24),
-              const Text(
+              Text(
                 'Additional Details',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
                 guide.additionalDetails,
+                style: GoogleFonts.poppins(),
               ),
             ],
           ),
@@ -85,10 +105,15 @@ Widget _buildLabelValueRow(String label, String value) {
       children: [
         Text(
           label,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: 8),
-        Text(value),
+        Expanded(
+          child: Text(
+            value,
+            style: GoogleFonts.poppins(),
+          ),
+        ),
       ],
     ),
   );
