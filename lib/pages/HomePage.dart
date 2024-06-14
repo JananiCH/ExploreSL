@@ -216,19 +216,39 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Top Destinations',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black87,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Top Destinations',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black87,
+                        ),
                       ),
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ScreenA(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'See more ➤',
+                          style: GoogleFonts.poppins(
+                              fontSize: 15, color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 6),
                 SizedBox(
@@ -290,37 +310,37 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ScreenA(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Top Guides',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black87,
                         ),
-                      );
-                    },
-                    child: Text(
-                      'See more ➤',
-                      style:
-                          GoogleFonts.poppins(fontSize: 15, color: Colors.blue),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Top Guides',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black87,
                       ),
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Guides(),
+                            ),
+                          );
+                        },
+                        child: Text('See more ➤',
+                            style: GoogleFonts.poppins(
+                                fontSize: 15, color: Colors.blue)),
+                      ),
+                    ),
+                  ],
                 ),
                 StreamBuilder(
                   stream: getAllUsers(),
@@ -371,22 +391,6 @@ class _HomeState extends State<Home> {
                     }
                     return const CircularProgressIndicator();
                   },
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Guides(),
-                        ),
-                      );
-                    },
-                    child: Text('See more ➤',
-                        style: GoogleFonts.poppins(
-                            fontSize: 15, color: Colors.blue)),
-                  ),
                 ),
               ],
             ),
