@@ -31,32 +31,38 @@ class _HomeState extends State<Home> {
     {
       'title': 'Galle',
       'image': 'lib/images/destinations/galle.jpeg',
-      'description': 'A beautiful city on the southwest coast known for its fort.'
+      'description':
+          'A beautiful city on the southwest coast known for its fort.'
     },
     {
       'title': 'Kandy',
       'image': 'lib/images/destinations/kandy.jpg',
-      'description': 'A picturesque city in the hills, home to the Temple of the Tooth.'
+      'description':
+          'A picturesque city in the hills, home to the Temple of the Tooth.'
     },
     {
       'title': 'Trincomalee',
       'image': 'lib/images/destinations/trinco.jpg',
-      'description': 'A port city on the northeast coast known for its beaches and temples.'
+      'description':
+          'A port city on the northeast coast known for its beaches and temples.'
     },
     {
       'title': 'Nuwara Eliya',
       'image': 'lib/images/destinations/nuwaraeliya.jpeg',
-      'description': 'A hill station known for its cool climate and tea plantations.'
+      'description':
+          'A hill station known for its cool climate and tea plantations.'
     },
     {
       'title': 'Jaffna',
       'image': 'lib/images/destinations/jaffna.jpg',
-      'description': 'A vibrant city in the north known for its rich Tamil culture.'
+      'description':
+          'A vibrant city in the north known for its rich Tamil culture.'
     },
     {
       'title': 'Unawatuna',
       'image': 'lib/images/destinations/matale.jpeg',
-      'description': 'A coastal town famous for its beautiful beaches and coral reefs.'
+      'description':
+          'A coastal town famous for its beautiful beaches and coral reefs.'
     },
   ];
 
@@ -108,15 +114,15 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Welcome to ExploreSL,',
+                              '         Welcome Back,',
                               style: GoogleFonts.poppins(
                                 fontSize: 24, // Larger font size
-                                color: Colors.black,
+                                color: const Color.fromARGB(255, 87, 81, 81),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              'Discover Sri Lanka with ease',
+                              '     Discover Sri Lanka with ease',
                               style: GoogleFonts.poppins(
                                 color: Colors.black87,
                                 fontSize: 18, // Larger font size
@@ -136,17 +142,10 @@ class _HomeState extends State<Home> {
                       hintStyle: GoogleFonts.poppins(),
                       prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(23),
                         borderSide: BorderSide(
                           width: 0.5,
                           color: Colors.grey.shade300,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: Colors.blue.shade500,
                         ),
                       ),
                     ),
@@ -178,7 +177,7 @@ class _HomeState extends State<Home> {
                           const Duration(milliseconds: 800),
                       autoPlayInterval: const Duration(seconds: 4),
                       enlargeCenterPage: true,
-                      aspectRatio: 16 / 9,
+                      aspectRatio: 18 / 9,
                       onPageChanged: (index, reason) {
                         setState(() {
                           myCurrentIndex = index;
@@ -272,7 +271,8 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   child: Text(
                                     destinations[index]['description']!,
                                     style: GoogleFonts.poppins(
@@ -303,8 +303,8 @@ class _HomeState extends State<Home> {
                     },
                     child: Text(
                       'See more ➤',
-                      style: GoogleFonts.poppins(
-                          fontSize: 15, color: Colors.blue),
+                      style:
+                          GoogleFonts.poppins(fontSize: 15, color: Colors.blue),
                     ),
                   ),
                 ),
