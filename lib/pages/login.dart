@@ -7,6 +7,7 @@ import '../ThisIsForGuides.dart';
 import 'HomePage.dart';
 import 'auth_page.dart';
 import 'choose_user.dart';
+import 'navigationPage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: ((context) => const Home()),
+                builder: ((context) => const navigation()),
               ));
         } else if (userType == 'guide') {
           Navigator.pushReplacement(

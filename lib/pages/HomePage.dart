@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:exploresl_login/pages/ScreenA.dart';
+import 'package:exploresl_login/pages/destination.dart';
 import 'package:exploresl_login/pages/guides.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

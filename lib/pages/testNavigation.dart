@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'HomePage.dart';
-import 'ScreenA.dart';
+import 'destination.dart';
 import 'guides.dart';
 import 'settings.dart';
 
