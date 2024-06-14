@@ -104,17 +104,13 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      const CircleAvatar(
-                        radius: 20,
-                        backgroundImage: AssetImage('lib/images/galle/5.jpeg'),
-                      ),
                       const SizedBox(width: 8.0),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '         Welcome Back,',
+                              '  Welcome Back,',
                               style: GoogleFonts.poppins(
                                 fontSize: 24, // Larger font size
                                 color: const Color.fromARGB(255, 87, 81, 81),
@@ -122,7 +118,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Text(
-                              '     Discover Sri Lanka with ease',
+                              '  Discover Sri Lanka with ease',
                               style: GoogleFonts.poppins(
                                 color: Colors.black87,
                                 fontSize: 18, // Larger font size
@@ -355,9 +351,9 @@ class _HomeState extends State<Home> {
                       return const CircularProgressIndicator();
                     }
                     if (snapshot.hasData) {
-                      final List<Guide>? users = snapshot.data;
+                      final List<Guide>? users = snapshot.data as List<Guide>?;
                       return SizedBox(
-                        height: 100,
+                        height: 150,
                         child: ListView.builder(
                           itemCount: users?.length,
                           scrollDirection: Axis.horizontal,
@@ -368,20 +364,31 @@ class _HomeState extends State<Home> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => TourGuideProfile(
-                                      guide: users[index],
+                                      guide: users![index],
                                     ),
                                   ),
                                 );
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: ClipOval(
-                                  child: Image.network(
-                                    users![index].image,
-                                    width: 75,
-                                    height: 75,
-                                    fit: BoxFit.cover,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    ClipOval(
+                                      child: SizedBox(
+                                        width: 75,
+                                        height: 75,
+                                        child: Image.network(
+                                          users![index].image,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      users[index].name,
+                                      style: GoogleFonts.poppins(),
+                                    ),
+                                  ],
                                 ),
                               ),
                             );
