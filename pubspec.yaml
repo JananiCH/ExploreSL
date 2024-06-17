@@ -118,6 +118,8 @@ flutter:
     - lib/images/pictures_d/sigiriya.png
     - lib/images/pictures_d/udawalawa.png
     - lib/images/ALL/images.jpeg
+    - lib/images/logonew.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
