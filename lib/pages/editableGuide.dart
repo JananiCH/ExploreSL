@@ -1,120 +1,115 @@
-import 'package:exploresl_login/models/guide_model.dart';
-import 'package:exploresl_login/pages/ContactNowPage.dart';
-import 'package:exploresl_login/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TourGuideProfile extends StatelessWidget {
-  final Guide guide;
-
-  const TourGuideProfile({
-    Key? key,
-    required this.guide,
-  }) : super(key: key);
-
+class TestGuide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tour Guides'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Home(),
-              ),
-            );
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage(guide.image),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                guide.name,
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              _buildLabelValueRow('Email:', guide.email),
-              _buildLabelValueRow('Contact Number:', guide.phoneNumber),
-              _buildLabelValueRow('Date of Birth:', guide.dob),
-              _buildLabelValueRow('Languages:', guide.languages),
-              _buildLabelValueRow('Experience:', guide.experience),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ContactNowPage(
-                        guidePhoneNumber: guide.phoneNumber,
-                      ),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                ),
-                child: Text(
-                  'Contact Now',
-                  style: GoogleFonts.poppins(),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'Additional Details',
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                guide.additionalDetails,
-                style: GoogleFonts.poppins(),
-              ),
-            ],
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Tour Guides'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
+        body: TourGuideProfile(),
       ),
     );
   }
 }
 
-Widget _buildLabelValueRow(String label, String value) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 4.0),
-    child: Row(
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+class TourGuideProfile extends StatefulWidget {
+  @override
+  _TourGuideProfileState createState() => _TourGuideProfileState();
+}
+
+class _TourGuideProfileState extends State<TourGuideProfile> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _languagesController = TextEditingController();
+  final TextEditingController _experienceController = TextEditingController();
+  final TextEditingController _detailsController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              radius: 60,
+              backgroundImage: NetworkImage(
+                  'https://via.placeholder.com/150'), // Placeholder image URL
+            ),
+            const SizedBox(height: 16),
+            _buildEditableField('Name:', _nameController),
+            _buildEditableField('Email:', _emailController),
+            _buildEditableField('Contact Number:', _phoneController),
+            _buildEditableField('Date of Birth:', _dobController),
+            _buildEditableField('Languages:', _languagesController),
+            _buildEditableField('Experience:', _experienceController),
+            const SizedBox(height: 34),
+            Text(
+              'Additional Details',
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            _buildEditableField('Details:', _detailsController, maxLines: 5),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                // Placeholder for save action
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.green,
+              ),
+              child: Text(
+                'Save',
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(
-            value,
+      ),
+    );
+  }
+
+  Widget _buildEditableField(String label, TextEditingController controller,
+      {int maxLines = 1}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: controller,
+            maxLines: maxLines,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            ),
             style: GoogleFonts.poppins(),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }

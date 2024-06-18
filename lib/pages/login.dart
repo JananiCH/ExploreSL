@@ -7,6 +7,7 @@ import '../ThisIsForGuides.dart';
 import 'HomePage.dart';
 import 'auth_page.dart';
 import 'choose_user.dart';
+import 'editableGuide.dart';
 import 'navigationPage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: ((context) => const MyWidget()),
+                builder: ((context) => TestGuide()),
               ));
         }
       } else {
